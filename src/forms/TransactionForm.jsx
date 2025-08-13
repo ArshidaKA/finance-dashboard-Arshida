@@ -1,0 +1,72 @@
+import { useForm } from "react-hook-form";
+import { useTransactions } from "../hooks/useTransactions";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { useState } from "react";
+
+export default function TransactionForm() {
+  const { addTransaction } = useTransactions();
+  const [date, setDate] = useState(new Date());
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+    watch,
+  } = useForm({
+    defaultValues: {
+      type: "expense",
+      category: "",
+      description: "",
+      amount: "",
+    },
+  });
+
+  const typeValue = watch("type");
+
+  const onSubmit = (data) => {
+    addTransaction({
+      ...data,
+      date: date.toISOString(),
+      amount: parseFloat(data.amount),
+    });
+    reset();
+    setDate(new Date());
+  };
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)} style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
+      <input
+        type="number"
+        placeholder="Amount"
+        {...register("amount", { required: true, min: 0.01 })}
+      />
+      {errors.amount && <span>Amount must be positive</span>}
+
+      <select {...register("category", { required: true })}>
+        <option value="">Select Category</option>
+        <option>Food</option>
+        <option>Transport</option>
+        <option>Entertainment</option>
+        <option>Bills</option>
+        <option>Shopping</option>
+        <option>Salary</option>
+        <option>Freelance</option>
+        <option>Other</option>
+      </select>
+      {errors.category && <span>Category required</span>}
+
+      <input type="text" placeholder="Description" {...register("description")} />
+
+      <DatePicker selected={date} onChange={(d) => setDate(d)} maxDate={typeValue === "expense" ? new Date() : null} />
+
+      <select {...register("type")}>
+        <option value="income">Income</option>
+        <option value="expense">Expense</option>
+      </select>
+
+      <button type="submit">Add</button>
+    </form>
+  );
+}
