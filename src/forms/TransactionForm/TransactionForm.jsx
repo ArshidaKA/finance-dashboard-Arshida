@@ -2,11 +2,11 @@ import { useForm } from "react-hook-form";
 import { useTransactions } from "../../hooks/useTransactions";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./TransactionForm.module.css";
 
-export default function TransactionForm() {
-  const { addTransaction } = useTransactions();
+export default function TransactionForm({ initialData = null, onSubmitComplete, isEditing = false }) {
+  const { addTransaction, updateTransaction } = useTransactions();
   const [date, setDate] = useState(new Date());
 
   const {
@@ -26,14 +26,36 @@ export default function TransactionForm() {
 
   const typeValue = watch("type");
 
+  // Prefill form if editing
+  useEffect(() => {
+    if (initialData) {
+      reset({
+        type: initialData.type,
+        category: initialData.category,
+        description: initialData.description || "",
+        amount: initialData.amount,
+      });
+      setDate(new Date(initialData.date));
+    }
+  }, [initialData, reset]);
+
   const onSubmit = (data) => {
-    addTransaction({
+    const payload = {
       ...data,
       date: date.toISOString(),
       amount: parseFloat(data.amount),
-    });
+      id: initialData?.id, // preserve id for editing
+    };
+
+    if (isEditing) {
+      updateTransaction(payload);
+    } else {
+      addTransaction(payload);
+    }
+
     reset();
     setDate(new Date());
+    if (onSubmitComplete) onSubmitComplete();
   };
 
   return (
@@ -78,7 +100,9 @@ export default function TransactionForm() {
         <option value="expense">Expense</option>
       </select>
 
-      <button type="submit" className={styles.button}>Add</button>
+      <button type="submit" className={styles.button}>
+        {isEditing ? "Update" : "Add"}
+      </button>
     </form>
   );
 }

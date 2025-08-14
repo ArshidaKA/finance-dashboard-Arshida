@@ -1,72 +1,197 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
 .container {
-  padding: 1rem;
-  display: grid;
+  font-family: 'Inter', sans-serif;
+  display: flex;
+  flex-direction: column;
   gap: 2rem;
+  background-color: #f8f9fa;
+  padding: 2rem;
+  color: #222;
 }
 
 .section {
-  background: var(--card-bg, #fff);
-  padding: 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-}
-
-.section h2 {
-  margin-bottom: 1rem;
-}
-
-.reportsGrid {
-  display: grid;
-  gap: 1.5rem;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-}
-
-.fullWidth {
-  grid-column: 1 / -1;
-}
-
-.exportButtons {
-  margin-top: 1rem;
+  flex: 1;
   display: flex;
-  gap: 0.75rem;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
-.fileLabel {
-  display: inline-flex;
-  gap: 0.5rem;
-  align-items: center;
-  cursor: pointer;
+h2 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #111;
 }
 
+h3 {
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 0.8rem;
+}
+
+.reportsGrid,
 .settingsGrid {
   display: grid;
   gap: 1.5rem;
 }
 
-.clearButton {
-  background: #f44336;
-  color: white;
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
+.reportsGrid {
+  grid-template-columns: 1fr 1fr;
 }
 
-.clearButton:hover {
-  background: #d7372b;
+.settingsGrid {
+  grid-template-columns: 1fr;
 }
 
-button {
-  background: var(--primary-color, #4cafef);
+.fullWidth {
+  grid-column: span 2;
+}
+
+.card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.2rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+}
+
+.exportButtons {
+  display: flex;
+  gap: 1rem;
+}
+
+.buttonPrimary {
+  background-color: #4e73df;
   color: white;
+  padding: 0.6rem 1rem;
   border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
+  border-radius: 8px;
   cursor: pointer;
+  font-weight: 500;
   transition: background-color 0.2s ease;
 }
 
-button:hover {
-  background: var(--primary-hover, #399cd8);
+.buttonPrimary:hover {
+  background-color: #3751c1;
+}
+
+.buttonSecondary {
+  background-color: #e2e6ea;
+  color: #333;
+  padding: 0.6rem 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.buttonDanger {
+  background-color: #e74a3b;
+  color: white;
+  padding: 0.6rem 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.buttonDanger:hover {
+  background-color: #c0392b;
+}
+
+.fileLabel {
+  background-color: #f1f3f5;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.fileLabel input {
+  display: none;
+}
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+.container {
+  font-family: 'Inter', sans-serif;
+  padding: 2rem;
+  background-color: #f9fafb;
+  color: #111;
+}
+
+.section {
+  margin-bottom: 3rem;
+}
+
+h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.reportsRow,
+.settingsRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.reportCard,
+.settingCard {
+  background: #fff;
+  border-radius: 10px;
+  padding: 1.2rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  flex: 1 1 calc(33% - 1.5rem);
+  min-width: 280px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.reportCard:hover,
+.settingCard:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.fullWidth {
+  flex: 1 1 100%;
+}
+
+.buttonRow {
+  margin-top: 1rem;
+  display: flex;
+  gap: 1rem;
+}
+
+button,
+.fileLabel {
+  background-color: #4f46e5;
+  color: white;
+  padding: 0.6rem 1rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover,
+.fileLabel:hover {
+  background-color: #4338ca;
+}
+
+.fileLabel {
+  display: inline-block;
+  cursor: pointer;
+}
+
+.clearButton {
+  background-color: #ef4444;
+}
+
+.clearButton:hover {
+  background-color: #dc2626;
 }

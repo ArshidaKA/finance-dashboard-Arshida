@@ -31,6 +31,32 @@
 .transactionsTable th {
   background-color: #f4f4f4;
 }
+.editBtn {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 0.3rem 0.6rem;
+  margin-right: 0.3rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.editBtn:hover {
+  background-color: #45a049;
+}
+
+.deleteBtn {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.deleteBtn:hover {
+  background-color: #d32f2f;
+}
 
 .deleteBtn {
   background-color: #e74c3c;
@@ -109,4 +135,38 @@
     width: 100%;
     max-width: 600px;
   }
+  
+}
+.modalBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  background: white;
+  padding: 1rem;
+  border-radius: 8px;
+  width: 400px;
+  max-width: 90%;
+}
+
+.closeBtn {
+  margin-top: 1rem;
+  background-color: #777;
+  color: white;
+  border: none;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.closeBtn:hover {
+  background-color: #555;
 }

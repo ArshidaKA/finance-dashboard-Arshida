@@ -8,6 +8,7 @@ export default function AppRouter() {
   return (
     <Router>
       <PageLayout>
+        
         <Routes>
           <Route path="/" element={<Dashboard />} />
           <Route path="/transactions" element={<Transactions />} />
