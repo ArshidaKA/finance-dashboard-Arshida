@@ -1,0 +1,30 @@
+.header {
+  background: linear-gradient(135deg, #1e1e2f, #2c2c54);
+  padding: 1rem 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.nav {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.link {
+  color: #ddd;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: color 0.3s ease, border-bottom 0.3s ease;
+  padding-bottom: 4px;
+}
+
+.link:hover {
+  color: #fff;
+}
+
+.active {
+  color: #ffffff;
+  border-bottom: 2px solid #ffb400;
+  font-weight: 600;
+}

@@ -1,0 +1,39 @@
+.form {
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+}
+
+.label {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.label span {
+  min-width: 90px;
+}
+
+.fullWidth {
+  grid-column: 1 / -1;
+}
+
+input[type="number"] {
+  width: 100%;
+  padding: 0.4rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  padding: 0.6rem 1rem;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}

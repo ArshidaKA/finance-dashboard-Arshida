@@ -1,4 +1,4 @@
-import TransactionForm from "../forms/TransactionForm";
+import TransactionForm from "../forms/TransactionForm/TransactionForm";
 import TransactionTable from "../components/TransactionTable/TransactionTable";
 
 export default function Transactions() {

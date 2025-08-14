@@ -1,9 +1,10 @@
-import SummaryCard from "../components/SummaryCard/SummaryCard";
-import ExpenseCategoriesChart from "../charts/ExpenseCategoriesChart";
-import MonthlySpendingTrend from "../charts/MonthlySpendingTrend";
-import { useFinancialData } from "../hooks/useFinancialData";
-import { useTransactions } from "../hooks/useTransactions";
+import SummaryCard from "../../components/SummaryCard/SummaryCard";
+import ExpenseCategoriesChart from "../../charts/ExpenseCategoriesChart";
+import MonthlySpendingTrend from "../../charts/MonthlySpendingTrend";
+import { useFinancialData } from "../../hooks/useFinancialData";
+import { useTransactions } from "../../hooks/useTransactions";
 import { format } from "date-fns";
+import styles from "./Dashboard.module.css";
 
 export default function Dashboard() {
   const { totalIncome, totalExpenses, currentBalance, categoryBreakdown, monthlyTrend } =
@@ -13,9 +14,9 @@ export default function Dashboard() {
   const recentTx = transactions.slice(0, 10);
 
   return (
-    <div style={{ padding: "1rem" }}>
+    <div className={styles.dashboard}>
       {/* Summary Cards */}
-      <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
+      <div className={styles.summaryCards}>
         <SummaryCard title="Total Income" value={`$${totalIncome}`} color="green" />
         <SummaryCard title="Total Expenses" value={`$${totalExpenses}`} color="red" />
         <SummaryCard title="Balance" value={`$${currentBalance}`} color="blue" />
@@ -23,8 +24,9 @@ export default function Dashboard() {
       </div>
 
       {/* Recent Transactions */}
-      <h2 style={{ marginTop: "2rem" }}>Recent Transactions</h2>
-      <table style={{ width: "100%", borderCollapse: "collapse" }}>
+      <h2 className={styles.sectionTitle}>Recent Transactions</h2>
+      <div className={styles.tableWrapper}>
+      <table className={styles.transactionsTable}>
         <thead>
           <tr>
             <th>Date</th>
@@ -44,21 +46,27 @@ export default function Dashboard() {
               <td>{t.description || "-"}</td>
               <td>${t.amount}</td>
               <td>
-                <button onClick={() => deleteTransaction(t.id)}>Delete</button>
+                <button
+                  className={styles.deleteBtn}
+                  onClick={() => deleteTransaction(t.id)}
+                >
+                  Delete
+                </button>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
+      </div>
 
       {/* Charts */}
-      <div style={{ display: "flex", gap: "2rem", marginTop: "2rem", flexWrap: "wrap" }}>
-        <div style={{ flex: 1, minWidth: "300px" }}>
-          <h3>Expense Categories</h3>
+      <div className={styles.charts}>
+        <div className={styles.chartBox}>
+          <h3 className={styles.chartTitle}>Expense Categories</h3>
           <ExpenseCategoriesChart data={categoryBreakdown} />
         </div>
-        <div style={{ flex: 1, minWidth: "300px" }}>
-          <h3>Monthly Spending Trend</h3>
+        <div className={styles.chartBox}>
+          <h3 className={styles.chartTitle}>Monthly Spending Trend</h3>
           <MonthlySpendingTrend data={monthlyTrend} />
         </div>
       </div>

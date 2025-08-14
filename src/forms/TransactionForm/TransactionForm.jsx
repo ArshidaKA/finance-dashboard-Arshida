@@ -1,8 +1,9 @@
 import { useForm } from "react-hook-form";
-import { useTransactions } from "../hooks/useTransactions";
+import { useTransactions } from "../../hooks/useTransactions";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useState } from "react";
+import styles from "./TransactionForm.module.css";
 
 export default function TransactionForm() {
   const { addTransaction } = useTransactions();
@@ -36,15 +37,16 @@ export default function TransactionForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
+    <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
       <input
         type="number"
         placeholder="Amount"
+        className={styles.input}
         {...register("amount", { required: true, min: 0.01 })}
       />
-      {errors.amount && <span>Amount must be positive</span>}
+      {errors.amount && <span className={styles.error}>Amount must be positive</span>}
 
-      <select {...register("category", { required: true })}>
+      <select className={styles.select} {...register("category", { required: true })}>
         <option value="">Select Category</option>
         <option>Food</option>
         <option>Transport</option>
@@ -55,18 +57,28 @@ export default function TransactionForm() {
         <option>Freelance</option>
         <option>Other</option>
       </select>
-      {errors.category && <span>Category required</span>}
+      {errors.category && <span className={styles.error}>Category required</span>}
 
-      <input type="text" placeholder="Description" {...register("description")} />
+      <input
+        type="text"
+        placeholder="Description"
+        className={styles.input}
+        {...register("description")}
+      />
 
-      <DatePicker selected={date} onChange={(d) => setDate(d)} maxDate={typeValue === "expense" ? new Date() : null} />
+      <DatePicker
+        selected={date}
+        onChange={(d) => setDate(d)}
+        maxDate={typeValue === "expense" ? new Date() : null}
+        className={styles.datePicker}
+      />
 
-      <select {...register("type")}>
+      <select className={styles.select} {...register("type")}>
         <option value="income">Income</option>
         <option value="expense">Expense</option>
       </select>
 
-      <button type="submit">Add</button>
+      <button type="submit" className={styles.button}>Add</button>
     </form>
   );
 }

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useTransactions } from "../../hooks/useTransactions";
 import { format } from "date-fns";
+import styles from "./TransactionTable.module.css";
 
 export default function TransactionTable() {
   const { transactions, deleteTransaction } = useTransactions();
@@ -11,8 +12,8 @@ export default function TransactionTable() {
   const paginated = transactions.slice((page - 1) * itemsPerPage, page * itemsPerPage);
 
   return (
-    <div style={{ marginTop: "2rem" }}>
-      <table style={{ width: "100%", borderCollapse: "collapse" }}>
+    <div className={styles.tableWrapper}>
+      <table className={styles.table}>
         <thead>
           <tr>
             <th>Date</th>
@@ -32,28 +33,34 @@ export default function TransactionTable() {
               <td>{t.description || "-"}</td>
               <td>${t.amount}</td>
               <td>
-                <button onClick={() => deleteTransaction(t.id)}>Delete</button>
+                <button
+                  onClick={() => deleteTransaction(t.id)}
+                  className={styles.deleteBtn}
+                >
+                  Delete
+                </button>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
 
-      {/* Pagination */}
-      <div style={{ marginTop: "1rem" }}>
-        {Array.from({ length: totalPages }, (_, i) => (
-          <button
-            key={i}
-            onClick={() => setPage(i + 1)}
-            style={{
-              fontWeight: page === i + 1 ? "bold" : "normal",
-              marginRight: "0.5rem",
-            }}
-          >
-            {i + 1}
-          </button>
-        ))}
-      </div>
+      {/* Show pagination only if there are multiple pages */}
+      {totalPages > 1 && (
+        <div className={styles.pagination}>
+          {Array.from({ length: totalPages }, (_, i) => (
+            <button
+              key={i}
+              onClick={() => setPage(i + 1)}
+              className={`${styles.pageBtn} ${
+                page === i + 1 ? styles.activePage : ""
+              }`}
+            >
+              {i + 1}
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

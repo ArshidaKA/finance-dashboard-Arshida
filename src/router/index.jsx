@@ -1,8 +1,8 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import PageLayout from "../layout/PageLayout";
-import Dashboard from "../pages/Dashboard";
+import Dashboard from "../pages/Dashboard/Dashboard";
 import Transactions from "../pages/Transactions";
-import ReportsSettings from "../pages/ReportsSettings";
+import ReportsSettings from "../pages/ReportsSettings/ReportsSettings";
 
 export default function AppRouter() {
   return (

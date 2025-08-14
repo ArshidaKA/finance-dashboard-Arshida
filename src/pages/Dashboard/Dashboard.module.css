@@ -1,0 +1,112 @@
+.dashboard {
+  padding: 1rem;
+}
+
+.summaryCards {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.sectionTitle {
+  margin-top: 2rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.transactionsTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  font-size: 0.95rem;
+}
+
+.transactionsTable th,
+.transactionsTable td {
+  padding: 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.transactionsTable th {
+  background-color: #f4f4f4;
+}
+
+.deleteBtn {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.deleteBtn:hover {
+  background-color: #c0392b;
+}
+
+.charts {
+  display: flex;
+  gap: 2rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.chartBox {
+  flex: 1;
+  min-width: 300px;
+}
+
+.chartTitle {
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+/* 📱 Mobile Styles */
+@media (max-width: 768px) {
+  .summaryCards {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .transactionsTable {
+    font-size: 0.85rem;
+  }
+  .tableWrapper {
+  overflow-x: auto;
+}
+
+.transactionsTable {
+  width: 100%;
+  min-width: 600px; /* ensures columns have space */
+}
+
+  .transactionsTable th,
+  .transactionsTable td {
+    padding: 0.5rem;
+  }
+
+  .charts {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+}
+
+/* 💻 Tablet Styles */
+@media (max-width: 1024px) {
+  .summaryCards {
+    justify-content: center;
+  }
+
+  .charts {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .chartBox {
+    width: 100%;
+    max-width: 600px;
+  }
+}
