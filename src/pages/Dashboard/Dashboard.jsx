@@ -16,6 +16,14 @@ export default function Dashboard() {
   const recentTx = transactions.slice(0, 10);
 
   const [editingTx, setEditingTx] = useState(null);
+  const [txToDelete, setTxToDelete] = useState(null); // store transaction for confirmation
+
+  const handleDeleteConfirm = () => {
+    if (txToDelete) {
+      deleteTransaction(txToDelete.id);
+      setTxToDelete(null);
+    }
+  };
 
   return (
     <div className={styles.dashboard}>
@@ -58,7 +66,7 @@ export default function Dashboard() {
                   </button>
                   <button
                     className={styles.deleteBtn}
-                    onClick={() => deleteTransaction(t.id)}
+                    onClick={() => setTxToDelete(t)}
                   >
                     Delete
                   </button>
@@ -97,6 +105,33 @@ export default function Dashboard() {
             >
               Close
             </button>
+          </div>
+        </div>
+      )}
+
+      {/* Delete Confirmation Modal */}
+      {txToDelete && (
+        <div className={styles.modalBackdrop}>
+          <div className={styles.modal}>
+            <h3>Delete Transaction</h3>
+            <p>
+              Are you sure you want to delete the transaction{" "}
+              <strong>{txToDelete.description || "(No description)"}</strong>?
+            </p>
+            <div className={styles.modalActions}>
+              <button
+                className={styles.confirmBtn}
+                onClick={handleDeleteConfirm}
+              >
+                Yes, Delete
+              </button>
+              <button
+                className={styles.cancelBtn}
+                onClick={() => setTxToDelete(null)}
+              >
+                Cancel
+              </button>
+            </div>
           </div>
         </div>
       )}

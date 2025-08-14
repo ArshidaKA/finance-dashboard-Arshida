@@ -13,6 +13,7 @@
   padding: 0.8rem 1.5rem;
   box-shadow: 0 2px 8px rgba(0,0,0,0.5);
   border-bottom: 1px solid rgba(255,255,255,0.05);
+  flex-wrap: wrap;
 }
 
 .left {
@@ -76,4 +77,46 @@
   height: 2px;
   background: var(--primary-color);
   border-radius: 2px;
+}
+
+/* 📱 Mobile view adjustments */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+  }
+
+  .nav {
+    flex-direction: column;
+    gap: 0.8rem;
+    margin-top: 0.8rem;
+    width: 100%;
+  }
+
+  .link {
+    display: block;
+    width: 100%;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .link:last-child {
+    border-bottom: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .profileImage {
+    width: 36px;
+    height: 36px;
+  }
+
+  .name {
+    font-size: 0.9rem;
+  }
+
+  .hi {
+    font-size: 0.7rem;
+  }
 }

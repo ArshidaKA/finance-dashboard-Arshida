@@ -95,10 +95,10 @@ export default function ReportsSettings() {
             <BudgetsForm />
           </div>
 
-          <div className={styles.settingCard}>
+          {/* <div className={styles.settingCard}>
             <h3>Theme</h3>
             <ThemeToggle />
-          </div>
+          </div> */}
 
           <div className={styles.settingCard}>
             <h3>Data Management</h3>
